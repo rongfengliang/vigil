@@ -59,11 +59,11 @@
       <div class="wrapper">
         <h1 class="font-sans-semibold">
           {% if states.status == "dead" %}
-            Partial service outage ongoing
+            部分服务故障，请及时检查
           {% elif states.status == "sick" %}
-            Minor service slowdown ongoing
+           监控服务异常
           {% else %}
-            All systems report as healthy
+            系统健康
           {% endif %}
         </h1>
 
@@ -88,26 +88,26 @@
         <div class="general-inner">
           <h2 class="font-sans-bold">
             {% if states.status == "dead" %}
-              Looks like some services are not working.
+              一些服务没用运行
             {% elif states.status == "sick" %}
-              Looks like services are under high load.
+              服务负载过高
             {% else %}
-              Looks like everything is operating normally.
+              正常运行
             {% endif %}
           </h2>
 
-          <p class="font-sans-semibold">This status page automatically monitors our systems and alerts if something is not working as expected.</p>
+          <p class="font-sans-semibold">自动监控系统的状态并展示异常信息</p>
 
           <p class="font-sans-regular">
             {% if states.status == "dead" %}
-              Our team has been notified of the issue. If the outage persists,
+              团队已经收到异常情况，我们会及时处理,
             {% elif states.status == "sick" %}
-              Services are slower than usual at the moment. If you are encountering an issue,
+            服务响应太慢了
             {% else %}
-              All systems are healthy at the moment. If you are encountering an issue,
+            所有系统目前正常运行
             {% endif %}
 
-            please <a href="{{ config.support_url | escape }}" class="font-sans-semibold">contact our support</a>.
+            请 <a href="{{ config.support_url | escape }}" class="font-sans-semibold">联系我们获取支持</a>.
           </p>
         </div>
       </section>
@@ -134,19 +134,19 @@
                         <span class="tooltip-value">
                           <span class="tooltip-main font-sans-semibold">
                             {% if replica.status == "dead" %}
-                              This replica reports as dead.
+                              集群报告异常.
                             {% elif replica.status == "sick" %}
-                              This replica reports as sick.
+                              集群异常
                             {% else %}
-                              This replica reports as healthy.
+                              集群健康
                             {% endif %}
                           </span>
 
                           <span class="tooltip-label font-sans-light">
                             {% if node.mode == "push" %}
-                              Checked via a push probe (Reporter).
+                              push 探针获取 (Reporter).
                             {% else %}
-                              Checked via a poll probe (HTTP or TCP).
+                              poll 探针获取 (HTTP or TCP).
                             {% endif %}
                           </span>
                         </span>
